@@ -30,12 +30,14 @@ function useLocale() {
   return useContext(LocaleContext);
 }
 
-// Image URLs
+// Image URLs — authentic Basalte Spa interior photography
 const images = {
-  hero: "https://image.qwenlm.ai/generated-images/c488856c-de66-4366-8eb4-2681757af7e7/_result.png",
-  hammam: "https://image.qwenlm.ai/generated-images/55e32ded-8f62-4ec0-9f83-6bf17ea6b76c/_result.png",
-  detail: "https://image.qwenlm.ai/generated-images/68f0ce71-5ee0-4c0a-818d-0ac9b4455f5e/_result.png",
-  lounge: "https://image.qwenlm.ai/generated-images/d448a42c-f2fd-4d76-a41d-50618fa2f249/_result.png",
+  hero: "https://image.qwenlm.ai/generated-images/8e19131f-e976-4bed-ad31-13ce7d954500/_result.png",
+  reception: "https://image.qwenlm.ai/generated-images/c1801718-46de-43c3-bedf-b40ab2a4ca29/_result.png",
+  hammam: "https://image.qwenlm.ai/generated-images/e3b8a065-d7a8-4a1c-ae92-d0fd25bcade0/_result.png",
+  lounge: "https://image.qwenlm.ai/generated-images/8ce61b08-2452-4d26-93f3-ff3f0f018a8f/_result.png",
+  loungeRed: "https://image.qwenlm.ai/generated-images/35683578-3b51-4c36-b005-0550b4e6cef9/_result.png",
+  detail: "https://image.qwenlm.ai/generated-images/43debe64-b44e-4751-b1d4-eff6e373e760/_result.png",
 };
 
 // Animation variants
@@ -376,8 +378,8 @@ function SpaExperience() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
               <img
-                src={images.hammam}
-                alt="Hammam traditionnel du spa Basalte"
+                src={images.reception}
+                alt="Réception du spa Basalte à Tanger"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -435,19 +437,19 @@ function Services() {
       title: t.services.hammam.title,
       description: t.services.hammam.description,
       image: images.hammam,
-      alt: "Hammam traditionnel",
+      alt: "Hammam traditionnel en marbre et tadelakt",
     },
     {
       title: t.services.massage.title,
       description: t.services.massage.description,
-      image: images.lounge,
-      alt: "Salle de massage relaxant",
+      image: images.hero,
+      alt: "Salle de soin avec éclairage chaleureux",
     },
     {
       title: t.services.wellness.title,
       description: t.services.wellness.description,
-      image: images.detail,
-      alt: "Espace bien-être",
+      image: images.lounge,
+      alt: "Salle de relaxation et bien-être",
     },
   ];
 
@@ -511,10 +513,12 @@ function Gallery() {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   const galleryImages = [
-    { src: images.hero, alt: "Intérieur principal du spa Basalte", category: t.gallery.categories.spa },
-    { src: images.hammam, alt: "Hammam traditionnel en pierre", category: t.gallery.categories.hammam },
-    { src: images.lounge, alt: "Espace de détente et relaxation", category: t.gallery.categories.ambiance },
-    { src: images.detail, alt: "Détails décoratifs et ambiance", category: t.gallery.categories.details },
+    { src: images.reception, alt: "Réception du spa Basalte avec logo doré", category: t.gallery.categories.spa },
+    { src: images.hammam, alt: "Hammam traditionnel en marbre et tadelakt", category: t.gallery.categories.hammam },
+    { src: images.lounge, alt: "Salle de relaxation avec motifs géométriques", category: t.gallery.categories.ambiance },
+    { src: images.loungeRed, alt: "Espace détente avec mur texturé rouge", category: t.gallery.categories.ambiance },
+    { src: images.detail, alt: "Plateau marocain avec produits naturels", category: t.gallery.categories.details },
+    { src: images.hero, alt: "Salle de soin avec éclairage chaleureux", category: t.gallery.categories.spa },
   ];
 
   return (
@@ -529,13 +533,13 @@ function Gallery() {
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           {galleryImages.map((img, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
               <button
                 onClick={() => setLightboxImage(img.src)}
                 className={`relative group rounded-xl overflow-hidden cursor-pointer ${
-                  i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/3]"
+                  i === 0 ? "col-span-2 row-span-2 aspect-[4/3]" : "aspect-[4/3]"
                 }`}
                 aria-label={`Voir ${img.alt}`}
               >
