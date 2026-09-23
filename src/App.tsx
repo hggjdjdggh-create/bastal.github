@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext, useContext, useRef } from "react";
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   MessageCircle,
@@ -14,6 +15,7 @@ import {
 } from "lucide-react";
 import { siteConfig, getWhatsAppUrl, getTelUrl, getMapsDirectionsUrl } from "./config/siteConfig";
 import { translations, type Locale } from "./i18n/translations";
+import ReviewsPage from "./pages/ReviewsPage";
 
 // Locale Context
 const LocaleContext = createContext<{
@@ -26,7 +28,7 @@ const LocaleContext = createContext<{
   t: translations.fr,
 });
 
-function useLocale() {
+export function useLocale() {
   return useContext(LocaleContext);
 }
 
@@ -77,6 +79,9 @@ function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isReviewsPage = location.pathname.includes("avis") || location.pathname.includes("reviews");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -87,12 +92,25 @@ function Header() {
     return () => observer.disconnect();
   }, []);
 
+  const handleLocaleChange = (newLocale: Locale) => {
+    setLocale(newLocale);
+    const pathPrefix = newLocale === "fr" ? "/fr" : newLocale === "en" ? "/en" : "/ar";
+    if (isReviewsPage) {
+      const reviewPath = newLocale === "fr" ? "avis" : "reviews";
+      navigate(`${pathPrefix}/${reviewPath}`);
+    } else {
+      navigate(pathPrefix);
+    }
+  };
+
+  const reviewsPath = locale === "fr" ? "/fr/avis" : locale === "en" ? "/en/reviews" : "/ar/reviews";
+  
   const navItems = [
-    { label: t.nav.spa, href: "#spa" },
-    { label: t.nav.experiences, href: "#experiences" },
-    { label: t.nav.gallery, href: "#gallery" },
-    { label: t.nav.reviews, href: "#reviews" },
-    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.spa, href: "#spa", isRoute: false },
+    { label: t.nav.experiences, href: "#experiences", isRoute: false },
+    { label: t.nav.gallery, href: "#gallery", isRoute: false },
+    { label: t.nav.reviews, href: reviewsPath, isRoute: true },
+    { label: t.nav.contact, href: "#contact", isRoute: false },
   ];
 
   const locales: { code: Locale; label: string }[] = [
@@ -122,15 +140,18 @@ function Header() {
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-8" aria-label="Navigation principale">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm text-text-muted hover:text-primary transition-colors duration-200 font-medium"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const href = item.isRoute ? item.href : (isReviewsPage ? `/${locale}` : item.href);
+                return (
+                  <a
+                    key={item.label}
+                    href={href}
+                    className="text-sm text-text-muted hover:text-primary transition-colors duration-200 font-medium"
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
             </nav>
 
             {/* Right side */}
@@ -141,7 +162,7 @@ function Header() {
                 {locales.map((l) => (
                   <button
                     key={l.code}
-                    onClick={() => setLocale(l.code)}
+                    onClick={() => handleLocaleChange(l.code)}
                     className={`px-2 py-0.5 text-xs rounded-full transition-all ${
                       locale === l.code
                         ? "bg-primary text-background font-medium"
@@ -189,21 +210,24 @@ function Header() {
             className="fixed inset-0 z-40 bg-background pt-20 lg:hidden"
           >
             <nav className="flex flex-col items-center gap-6 p-8" aria-label="Navigation mobile">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg text-primary font-medium"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const href = item.isRoute ? item.href : (isReviewsPage ? `/${locale}` : item.href);
+                return (
+                  <a
+                    key={item.label}
+                    href={href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-lg text-primary font-medium"
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
               <div className="flex items-center gap-2 mt-4">
                 {locales.map((l) => (
                   <button
                     key={l.code}
-                    onClick={() => { setLocale(l.code); setIsMobileMenuOpen(false); }}
+                    onClick={() => { handleLocaleChange(l.code); setIsMobileMenuOpen(false); }}
                     className={`px-3 py-1.5 text-sm rounded-full border transition-all ${
                       locale === l.code
                         ? "bg-primary text-background border-primary"
@@ -831,7 +855,7 @@ function FinalCTA() {
 
 // ============ FOOTER ============
 function Footer() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
 
   return (
     <footer className="bg-primary-light text-white/70 py-16">
@@ -849,12 +873,12 @@ function Footer() {
           <div>
             <h4 className="text-white text-sm font-medium mb-4">Navigation</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">{t.nav.home}</a></li>
-              <li><a href="#spa" className="hover:text-white transition-colors">{t.nav.spa}</a></li>
-              <li><a href="#experiences" className="hover:text-white transition-colors">{t.nav.experiences}</a></li>
-              <li><a href="#gallery" className="hover:text-white transition-colors">{t.nav.gallery}</a></li>
-              <li><a href="#reviews" className="hover:text-white transition-colors">{t.nav.reviews}</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">{t.nav.contact}</a></li>
+              <li><a href={`/${locale}`} className="hover:text-white transition-colors">{t.nav.home}</a></li>
+              <li><a href={`/${locale}#spa`} className="hover:text-white transition-colors">{t.nav.spa}</a></li>
+              <li><a href={`/${locale}#experiences`} className="hover:text-white transition-colors">{t.nav.experiences}</a></li>
+              <li><a href={`/${locale}#gallery`} className="hover:text-white transition-colors">{t.nav.gallery}</a></li>
+              <li><a href={locale === "fr" ? "/fr/avis" : locale === "en" ? "/en/reviews" : "/ar/reviews"} className="hover:text-white transition-colors">{t.nav.reviews}</a></li>
+              <li><a href={`/${locale}#contact`} className="hover:text-white transition-colors">{t.nav.contact}</a></li>
             </ul>
           </div>
 
@@ -959,9 +983,51 @@ function MobileBottomBar() {
   );
 }
 
+// ============ HOME PAGE ============
+function HomePage() {
+  return (
+    <main>
+      <Hero />
+      <Introduction />
+      <SpaExperience />
+      <Services />
+      <Gallery />
+      <Reviews />
+      <Trust />
+      <Location />
+      <FAQ />
+      <FinalCTA />
+    </main>
+  );
+}
+
+// ============ LOCALE ROUTER ============
+function LocaleRouter() {
+  const location = useLocation();
+  const { setLocale } = useLocale();
+
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.startsWith("/ar")) {
+      setLocale("ar");
+    } else if (path.startsWith("/en")) {
+      setLocale("en");
+    } else {
+      setLocale("fr");
+    }
+  }, [location.pathname, setLocale]);
+
+  return null;
+}
+
 // ============ MAIN APP ============
 export default function App() {
-  const [locale, setLocale] = useState<Locale>("fr");
+  const [locale, setLocale] = useState<Locale>(() => {
+    const path = window.location.pathname;
+    if (path.startsWith("/ar")) return "ar";
+    if (path.startsWith("/en")) return "en";
+    return "fr";
+  });
 
   const t = translations[locale] as (typeof translations)["fr"];
   const dir = locale === "ar" ? "rtl" : "ltr";
@@ -974,24 +1040,31 @@ export default function App() {
 
   return (
     <LocaleContext.Provider value={{ locale, setLocale, t }}>
-      <div className="min-h-screen bg-background" dir={dir}>
-        <Header />
-        <main>
-          <Hero />
-          <Introduction />
-          <SpaExperience />
-          <Services />
-          <Gallery />
-          <Reviews />
-          <Trust />
-          <Location />
-          <FAQ />
-          <FinalCTA />
-        </main>
-        <Footer />
-        <FloatingWhatsApp />
-        <MobileBottomBar />
-      </div>
+      <BrowserRouter>
+        <LocaleRouter />
+        <div className="min-h-screen bg-background" dir={dir}>
+          <Header />
+          <Routes>
+            {/* Home routes */}
+            <Route path="/" element={<HomePage />} />
+            <Route path="/fr" element={<HomePage />} />
+            <Route path="/en" element={<HomePage />} />
+            <Route path="/ar" element={<HomePage />} />
+            
+            {/* Reviews routes */}
+            <Route path="/avis" element={<ReviewsPage />} />
+            <Route path="/fr/avis" element={<ReviewsPage />} />
+            <Route path="/en/reviews" element={<ReviewsPage />} />
+            <Route path="/ar/reviews" element={<ReviewsPage />} />
+            
+            {/* Fallback */}
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+          <Footer />
+          <FloatingWhatsApp />
+          <MobileBottomBar />
+        </div>
+      </BrowserRouter>
     </LocaleContext.Provider>
   );
 }

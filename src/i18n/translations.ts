@@ -12,6 +12,49 @@ export const translations = {
       contact: "Contact",
       book: "Réserver",
     },
+    // Reviews Page
+    reviewsPage: {
+      hero: {
+        eyebrow: "VOTRE EXPÉRIENCE COMPTE",
+        title: "Partagez votre expérience chez Basalte",
+        description: "Votre retour nous aide à améliorer continuellement votre expérience et permet à nos futurs visiteurs de mieux découvrir Basalte Spa & Massage.",
+        cta: "Laisser un avis",
+      },
+      googleReviews: {
+        title: "Avis Google",
+        rating: "4.8 / 5",
+        count: "283 avis Google",
+        button: "Voir les avis Google",
+      },
+      form: {
+        title: "Comment s'est passée votre visite ?",
+        ratingLabel: "Votre note",
+        ratingError: "Veuillez sélectionner une note",
+        nameLabel: "Votre prénom",
+        namePlaceholder: "Votre prénom",
+        commentLabel: "Votre expérience",
+        commentPlaceholder: "Partagez quelques mots sur votre expérience chez Basalte...",
+        commentError: "Veuillez décrire votre expérience (minimum 10 caractères)",
+        commentMaxLength: "500 caractères maximum",
+        consentLabel: "J'autorise Basalte Spa & Massage à publier cet avis sur son site internet.",
+        consentError: "Vous devez autoriser la publication de votre avis",
+        submit: "Envoyer mon avis",
+        privacy: "Nous utilisons uniquement les informations nécessaires au traitement de votre avis.",
+        success: {
+          title: "Merci pour votre retour.",
+          message: "Votre avis a bien été reçu. Il sera vérifié avant toute publication.",
+        },
+      },
+      approvedReviews: {
+        title: "Avis partagés avec Basalte",
+        empty: "Aucun avis approuvé pour le moment.",
+      },
+      finalCta: {
+        title: "Vous souhaitez découvrir Basalte ?",
+        description: "Contactez-nous directement pour connaître nos prestations et disponibilités.",
+        button: "Nous contacter sur WhatsApp",
+      },
+    },
     // Hero
     hero: {
       eyebrow: "BASALTE SPA & MASSAGE · TANGER",
@@ -150,6 +193,48 @@ export const translations = {
       contact: "Contact",
       book: "Book Now",
     },
+    reviewsPage: {
+      hero: {
+        eyebrow: "YOUR EXPERIENCE MATTERS",
+        title: "Share your experience at Basalte",
+        description: "Your feedback helps us continually improve the experience and helps future guests discover Basalte Spa & Massage.",
+        cta: "Leave a review",
+      },
+      googleReviews: {
+        title: "Google Reviews",
+        rating: "4.8 / 5",
+        count: "283 Google reviews",
+        button: "View Google reviews",
+      },
+      form: {
+        title: "How was your visit?",
+        ratingLabel: "Your rating",
+        ratingError: "Please select a rating",
+        nameLabel: "Your first name",
+        namePlaceholder: "Your first name",
+        commentLabel: "Your experience",
+        commentPlaceholder: "Tell us a few words about your experience at Basalte...",
+        commentError: "Please describe your experience (minimum 10 characters)",
+        commentMaxLength: "500 characters maximum",
+        consentLabel: "I allow Basalte Spa & Massage to publish this review on its website.",
+        consentError: "You must authorize the publication of your review",
+        submit: "Submit my review",
+        privacy: "We only use the information necessary to process your review.",
+        success: {
+          title: "Thank you for your feedback.",
+          message: "Your review has been received and will be checked before publication.",
+        },
+      },
+      approvedReviews: {
+        title: "Reviews shared with Basalte",
+        empty: "No approved reviews yet.",
+      },
+      finalCta: {
+        title: "Would you like to discover Basalte?",
+        description: "Contact us directly to learn about our services and availability.",
+        button: "Contact us on WhatsApp",
+      },
+    },
     hero: {
       eyebrow: "BASALTE SPA & MASSAGE · TANGIER",
       headline: "A moment of wellness, designed for you.",
@@ -274,6 +359,48 @@ export const translations = {
       reviews: "التقييمات",
       contact: "اتصل بنا",
       book: "احجز الآن",
+    },
+    reviewsPage: {
+      hero: {
+        eyebrow: "تجربتكم تهمنا",
+        title: "شاركنا تجربتك في Basalte",
+        description: "يساعدنا رأيكم على تحسين تجربتكم باستمرار، كما يساعد الزوار الجدد على اكتشاف Basalte Spa & Massage.",
+        cta: "أضف تقييمك",
+      },
+      googleReviews: {
+        title: "تقييمات جوجل",
+        rating: "4.8 / 5",
+        count: "283 تقييم على جوجل",
+        button: "عرض تقييمات جوجل",
+      },
+      form: {
+        title: "كيف كانت تجربتكم؟",
+        ratingLabel: "تقييمكم",
+        ratingError: "يرجى اختيار تقييم",
+        nameLabel: "الاسم الأول",
+        namePlaceholder: "الاسم الأول",
+        commentLabel: "تجربتكم",
+        commentPlaceholder: "شاركنا بعض الكلمات عن تجربتكم في Basalte...",
+        commentError: "يرجى وصف تجربتكم (10 أحرف على الأقل)",
+        commentMaxLength: "500 حرف كحد أقصى",
+        consentLabel: "أوافق على نشر هذا التقييم على الموقع الإلكتروني لـ Basalte Spa & Massage.",
+        consentError: "يجب الموافقة على نشر تقييمكم",
+        submit: "إرسال تقييمي",
+        privacy: "نستخدم فقط المعلومات الضرورية لمعالجة تقييمكم.",
+        success: {
+          title: "شكرًا لكم على تقييمكم.",
+          message: "تم استلام تقييمكم وسيتم التحقق منه قبل نشره.",
+        },
+      },
+      approvedReviews: {
+        title: "تقييمات مشتركة مع Basalte",
+        empty: "لا توجد تقييمات معتمدة حتى الآن.",
+      },
+      finalCta: {
+        title: "هل ترغبون في اكتشاف Basalte؟",
+        description: "تواصلوا معنا مباشرة لمعرفة خدماتنا وتوفرنا.",
+        button: "تواصلوا معنا عبر واتساب",
+      },
     },
     hero: {
       eyebrow: "بالت سبا آند ماساج · طنجة",
