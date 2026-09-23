@@ -38,6 +38,7 @@ const images = {
   lounge: "https://image.qwenlm.ai/generated-images/8ce61b08-2452-4d26-93f3-ff3f0f018a8f/_result.png",
   loungeRed: "https://image.qwenlm.ai/generated-images/35683578-3b51-4c36-b005-0550b4e6cef9/_result.png",
   detail: "https://image.qwenlm.ai/generated-images/43debe64-b44e-4751-b1d4-eff6e373e760/_result.png",
+  entrance: "https://image.qwenlm.ai/generated-images/3d767b6b-24ed-4940-84e4-b740e7adaa1e/_result.png",
 };
 
 // Animation variants
@@ -514,6 +515,7 @@ function Gallery() {
 
   const galleryImages = [
     { src: images.reception, alt: "Réception du spa Basalte avec logo doré", category: t.gallery.categories.spa },
+    { src: images.entrance, alt: "Entrée du spa avec escalier en granit", category: t.gallery.categories.spa },
     { src: images.hammam, alt: "Hammam traditionnel en marbre et tadelakt", category: t.gallery.categories.hammam },
     { src: images.lounge, alt: "Salle de relaxation avec motifs géométriques", category: t.gallery.categories.ambiance },
     { src: images.loungeRed, alt: "Espace détente avec mur texturé rouge", category: t.gallery.categories.ambiance },
