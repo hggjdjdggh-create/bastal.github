@@ -5,7 +5,7 @@ export type CustomerReview = {
   name?: string;
   rating: 1 | 2 | 3 | 4 | 5;
   comment: string;
-  locale: "fr" | "en" | "ar";
+  locale: "fr" | "en" | "ar" | "nl" | "es";
   consentToPublish: boolean;
   status: "pending" | "approved" | "rejected";
   createdAt: string;

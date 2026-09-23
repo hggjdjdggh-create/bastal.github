@@ -4,6 +4,7 @@ import { Star, MessageCircle, ArrowRight, Check } from "lucide-react";
 import { siteConfig, getWhatsAppUrl } from "../config/siteConfig";
 import { useLocale } from "../App";
 import { reviewFormSchema, type CustomerReview } from "../types/review";
+import { routeSlugs } from "../i18n/translations";
 
 // Animation variants
 const fadeUp = {
@@ -439,7 +440,7 @@ function ApprovedReviewsSection() {
 
 // Final CTA
 function ReviewsFinalCTA() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
 
   return (
     <section className="py-16 sm:py-24 bg-primary text-white">
@@ -452,13 +453,11 @@ function ReviewsFinalCTA() {
             {t.reviewsPage.finalCta.description}
           </p>
           <a
-            href={getWhatsAppUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`/${locale}/${routeSlugs.booking[locale as keyof typeof routeSlugs.booking]}`}
             className="inline-flex items-center gap-2 bg-cta-whatsapp hover:bg-cta-whatsapp-dark text-white px-8 py-4 rounded-full text-base font-medium transition-all duration-200 shadow-lg"
           >
             <MessageCircle size={20} />
-            {t.reviewsPage.finalCta.button}
+            {t.bookingPage?.form?.submit || t.reviewsPage.finalCta.button}
           </a>
         </AnimatedSection>
       </div>

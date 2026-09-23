@@ -14,8 +14,9 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { siteConfig, getWhatsAppUrl, getTelUrl, getMapsDirectionsUrl } from "./config/siteConfig";
-import { translations, type Locale } from "./i18n/translations";
+import { translations, type Locale, routeSlugs } from "./i18n/translations";
 import ReviewsPage from "./pages/ReviewsPage";
+import BookingPage from "./pages/BookingPage";
 
 // Locale Context
 const LocaleContext = createContext<{
@@ -94,22 +95,31 @@ function Header() {
 
   const handleLocaleChange = (newLocale: Locale) => {
     setLocale(newLocale);
-    const pathPrefix = newLocale === "fr" ? "/fr" : newLocale === "en" ? "/en" : "/ar";
-    if (isReviewsPage) {
-      const reviewPath = newLocale === "fr" ? "avis" : "reviews";
-      navigate(`${pathPrefix}/${reviewPath}`);
+    const pathPrefix = `/${newLocale}`;
+    const currentPath = location.pathname;
+    
+    // Detect current page type
+    const isReviews = currentPath.includes("/avis") || currentPath.includes("/reviews") || currentPath.includes("/resenas");
+    const isBooking = currentPath.includes("/reservation") || currentPath.includes("/booking") || currentPath.includes("/reserveren") || currentPath.includes("/reserva");
+    
+    if (isReviews) {
+      navigate(`${pathPrefix}/${routeSlugs.reviews[newLocale]}`);
+    } else if (isBooking) {
+      navigate(`${pathPrefix}/${routeSlugs.booking[newLocale]}`);
     } else {
       navigate(pathPrefix);
     }
   };
 
-  const reviewsPath = locale === "fr" ? "/fr/avis" : locale === "en" ? "/en/reviews" : "/ar/reviews";
+  const reviewsPath = `/${locale}/${routeSlugs.reviews[locale]}`;
+  const bookingPath = `/${locale}/${routeSlugs.booking[locale]}`;
   
   const navItems = [
     { label: t.nav.spa, href: "#spa", isRoute: false },
     { label: t.nav.experiences, href: "#experiences", isRoute: false },
     { label: t.nav.gallery, href: "#gallery", isRoute: false },
     { label: t.nav.reviews, href: reviewsPath, isRoute: true },
+    { label: t.nav.book, href: bookingPath, isRoute: true },
     { label: t.nav.contact, href: "#contact", isRoute: false },
   ];
 
@@ -117,6 +127,8 @@ function Header() {
     { code: "fr", label: "FR" },
     { code: "en", label: "EN" },
     { code: "ar", label: "AR" },
+    { code: "nl", label: "NL" },
+    { code: "es", label: "ES" },
   ];
 
   return (
@@ -177,9 +189,7 @@ function Header() {
 
               {/* CTA Button */}
               <a
-                href={getWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/${locale}/${routeSlugs.booking[locale]}`}
                 className="hidden sm:inline-flex items-center gap-2 bg-cta-whatsapp hover:bg-cta-whatsapp-dark text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-200"
               >
                 <MessageCircle size={16} />
@@ -239,9 +249,7 @@ function Header() {
                 ))}
               </div>
               <a
-                href={getWhatsAppUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`/${locale}/${routeSlugs.booking[locale]}`}
                 className="mt-4 inline-flex items-center gap-2 bg-cta-whatsapp text-white px-6 py-3 rounded-full font-medium"
               >
                 <MessageCircle size={18} />
@@ -877,7 +885,8 @@ function Footer() {
               <li><a href={`/${locale}#spa`} className="hover:text-white transition-colors">{t.nav.spa}</a></li>
               <li><a href={`/${locale}#experiences`} className="hover:text-white transition-colors">{t.nav.experiences}</a></li>
               <li><a href={`/${locale}#gallery`} className="hover:text-white transition-colors">{t.nav.gallery}</a></li>
-              <li><a href={locale === "fr" ? "/fr/avis" : locale === "en" ? "/en/reviews" : "/ar/reviews"} className="hover:text-white transition-colors">{t.nav.reviews}</a></li>
+              <li><a href={`/${locale}/${routeSlugs.reviews[locale]}`} className="hover:text-white transition-colors">{t.nav.reviews}</a></li>
+              <li><a href={`/${locale}/${routeSlugs.booking[locale]}`} className="hover:text-white transition-colors">{t.nav.book}</a></li>
               <li><a href={`/${locale}#contact`} className="hover:text-white transition-colors">{t.nav.contact}</a></li>
             </ul>
           </div>
@@ -1012,6 +1021,10 @@ function LocaleRouter() {
       setLocale("ar");
     } else if (path.startsWith("/en")) {
       setLocale("en");
+    } else if (path.startsWith("/nl")) {
+      setLocale("nl");
+    } else if (path.startsWith("/es")) {
+      setLocale("es");
     } else {
       setLocale("fr");
     }
@@ -1026,12 +1039,14 @@ export default function App() {
     const path = window.location.pathname;
     if (path.startsWith("/ar")) return "ar";
     if (path.startsWith("/en")) return "en";
+    if (path.startsWith("/nl")) return "nl";
+    if (path.startsWith("/es")) return "es";
     return "fr";
   });
 
   const t = translations[locale] as (typeof translations)["fr"];
   const dir = locale === "ar" ? "rtl" : "ltr";
-  const lang = locale === "ar" ? "ar" : locale === "en" ? "en" : "fr";
+  const lang = locale === "ar" ? "ar" : locale === "en" ? "en" : locale === "nl" ? "nl" : locale === "es" ? "es" : "fr";
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -1050,12 +1065,24 @@ export default function App() {
             <Route path="/fr" element={<HomePage />} />
             <Route path="/en" element={<HomePage />} />
             <Route path="/ar" element={<HomePage />} />
+            <Route path="/nl" element={<HomePage />} />
+            <Route path="/es" element={<HomePage />} />
             
             {/* Reviews routes */}
             <Route path="/avis" element={<ReviewsPage />} />
             <Route path="/fr/avis" element={<ReviewsPage />} />
             <Route path="/en/reviews" element={<ReviewsPage />} />
             <Route path="/ar/reviews" element={<ReviewsPage />} />
+            <Route path="/nl/reviews" element={<ReviewsPage />} />
+            <Route path="/es/resenas" element={<ReviewsPage />} />
+            
+            {/* Booking routes */}
+            <Route path="/reservation" element={<BookingPage />} />
+            <Route path="/fr/reservation" element={<BookingPage />} />
+            <Route path="/en/booking" element={<BookingPage />} />
+            <Route path="/ar/reservation" element={<BookingPage />} />
+            <Route path="/nl/reserveren" element={<BookingPage />} />
+            <Route path="/es/reserva" element={<BookingPage />} />
             
             {/* Fallback */}
             <Route path="*" element={<HomePage />} />

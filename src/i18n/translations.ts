@@ -1,4 +1,10 @@
-export type Locale = "fr" | "en" | "ar";
+export type Locale = "fr" | "en" | "ar" | "nl" | "es";
+
+// Route slugs per locale for i18n routing
+export const routeSlugs = {
+  reviews: { fr: "avis", en: "reviews", ar: "reviews", nl: "reviews", es: "resenas" },
+  booking: { fr: "reservation", en: "booking", ar: "reservation", nl: "reserveren", es: "reserva" },
+} as const;
 
 export const translations = {
   fr: {
@@ -11,6 +17,38 @@ export const translations = {
       reviews: "Avis",
       contact: "Contact",
       book: "Réserver",
+    },
+    // Booking Page
+    bookingPage: {
+      hero: {
+        eyebrow: "RÉSERVATION",
+        title: "Demande de réservation",
+        description: "Remplissez le formulaire ci-dessous. Votre demande sera envoyée sur WhatsApp pour que Basalte confirme la disponibilité.",
+      },
+      form: {
+        title: "Demande de réservation",
+        firstNameLabel: "Prénom",
+        firstNamePlaceholder: "Votre prénom",
+        partySizeLabel: "Nombre de personnes",
+        partySizePlaceholder: "Sélectionnez",
+        dateLabel: "Date souhaitée",
+        timeLabel: "Heure souhaitée",
+        serviceLabel: "Prestation souhaitée",
+        servicePlaceholder: "Sélectionnez",
+        serviceUnsure: "Je souhaite connaître les prestations disponibles",
+        messageLabel: "Message (facultatif)",
+        messagePlaceholder: "Informations complémentaires...",
+        submit: "Demander une réservation sur WhatsApp",
+        privacy: "Nous utilisons uniquement les informations nécessaires pour traiter votre demande.",
+        success: {
+          title: "Votre demande a été préparée.",
+          message: "Veuillez l'envoyer sur WhatsApp afin que Basalte confirme la disponibilité.",
+        },
+      },
+      crossLink: {
+        text: "Vous avez déjà visité Basalte ?",
+        reviews: "Partagez votre expérience",
+      },
     },
     // Reviews Page
     reviewsPage: {
@@ -193,6 +231,37 @@ export const translations = {
       contact: "Contact",
       book: "Book Now",
     },
+    bookingPage: {
+      hero: {
+        eyebrow: "BOOKING",
+        title: "Booking request",
+        description: "Fill out the form below. Your request will be sent via WhatsApp for Basalte to confirm availability.",
+      },
+      form: {
+        title: "Booking request",
+        firstNameLabel: "First name",
+        firstNamePlaceholder: "Your first name",
+        partySizeLabel: "Party size",
+        partySizePlaceholder: "Select",
+        dateLabel: "Preferred date",
+        timeLabel: "Preferred time",
+        serviceLabel: "Service",
+        servicePlaceholder: "Select",
+        serviceUnsure: "I would like to know the available services",
+        messageLabel: "Message (optional)",
+        messagePlaceholder: "Additional information...",
+        submit: "Request a booking on WhatsApp",
+        privacy: "We only use the information necessary to process your request.",
+        success: {
+          title: "Your request has been prepared.",
+          message: "Please send it via WhatsApp so Basalte can confirm availability.",
+        },
+      },
+      crossLink: {
+        text: "Have you already visited Basalte?",
+        reviews: "Share your experience",
+      },
+    },
     reviewsPage: {
       hero: {
         eyebrow: "YOUR EXPERIENCE MATTERS",
@@ -358,7 +427,38 @@ export const translations = {
       gallery: "المعرض",
       reviews: "التقييمات",
       contact: "اتصل بنا",
-      book: "احجز الآن",
+      book: "حجز",
+    },
+    bookingPage: {
+      hero: {
+        eyebrow: "حجز",
+        title: "طلب الحجز",
+        description: "املأ النموذج أدناه. سيتم إرسال طلبك عبر واتساب لتأكيد Basalte للتوفر.",
+      },
+      form: {
+        title: "طلب الحجز",
+        firstNameLabel: "الاسم الأول",
+        firstNamePlaceholder: "اسمك الأول",
+        partySizeLabel: "عدد الأشخاص",
+        partySizePlaceholder: "اختر",
+        dateLabel: "التاريخ المطلوب",
+        timeLabel: "الوقت المطلوب",
+        serviceLabel: "الخدمة",
+        servicePlaceholder: "اختر",
+        serviceUnsure: "أود معرفة الخدمات المتاحة",
+        messageLabel: "رسالة (اختياري)",
+        messagePlaceholder: "معلومات إضافية...",
+        submit: "طلب الحجز عبر واتساب",
+        privacy: "نستخدم فقط المعلومات الضرورية لمعالجة طلبكم.",
+        success: {
+          title: "تم إعداد طلبكم.",
+          message: "يرجى إرساله عبر واتساب لتأكيد Basalte للتوفر.",
+        },
+      },
+      crossLink: {
+        text: "هل زرتم Basalte من قبل؟",
+        reviews: "شاركنا تجربتكم",
+      },
     },
     reviewsPage: {
       hero: {
@@ -515,6 +615,402 @@ export const translations = {
     },
     floating: {
       label: "تواصل عبر واتساب",
+    },
+  },
+  nl: {
+    nav: {
+      home: "Home",
+      spa: "De Spa",
+      experiences: "Ervaringen",
+      gallery: "Galerij",
+      reviews: "Reviews",
+      contact: "Contact",
+      book: "Reserveren",
+    },
+    bookingPage: {
+      hero: {
+        eyebrow: "RESERVEREN",
+        title: "Reserveringsaanvraag",
+        description: "Vul het onderstaande formulier in. Uw aanvraag wordt via WhatsApp verzonden zodat Basalte de beschikbaarheid kan bevestigen.",
+      },
+      form: {
+        title: "Reserveringsaanvraag",
+        firstNameLabel: "Voornaam",
+        firstNamePlaceholder: "Uw voornaam",
+        partySizeLabel: "Aantal personen",
+        partySizePlaceholder: "Selecteer",
+        dateLabel: "Gewenste datum",
+        timeLabel: "Gewenst tijdstip",
+        serviceLabel: "Dienst",
+        servicePlaceholder: "Selecteer",
+        serviceUnsure: "Ik wil graag de beschikbare diensten ontdekken",
+        messageLabel: "Bericht (optioneel)",
+        messagePlaceholder: "Aanvullende informatie...",
+        submit: "Reservering aanvragen via WhatsApp",
+        privacy: "We gebruiken alleen de informatie die nodig is om uw aanvraag te verwerken.",
+        success: {
+          title: "Uw aanvraag is voorbereid.",
+          message: "Stuur deze via WhatsApp zodat Basalte de beschikbaarheid kan bevestigen.",
+        },
+      },
+      crossLink: {
+        text: "Heeft u Basalte al bezocht?",
+        reviews: "Deel uw ervaring",
+      },
+    },
+    reviewsPage: {
+      hero: {
+        eyebrow: "UW ERVARING TELT",
+        title: "Deel uw ervaring bij Basalte",
+        description: "Uw feedback helpt ons uw ervaring continu te verbeteren en stelt toekomstige bezoekers in staat Basalte Spa & Massage beter te ontdekken.",
+        cta: "Review plaatsen",
+      },
+      googleReviews: {
+        title: "Google Reviews",
+        rating: "4.8 / 5",
+        count: "283 Google reviews",
+        button: "Bekijk Google reviews",
+      },
+      form: {
+        title: "Hoe was uw bezoek?",
+        ratingLabel: "Uw beoordeling",
+        ratingError: "Selecteer een beoordeling",
+        nameLabel: "Uw voornaam",
+        namePlaceholder: "Uw voornaam",
+        commentLabel: "Uw ervaring",
+        commentPlaceholder: "Vertel ons iets over uw ervaring bij Basalte...",
+        commentError: "Beschrijf uw ervaring (minimaal 10 tekens)",
+        commentMaxLength: "Maximaal 500 tekens",
+        consentLabel: "Ik sta Basalte Spa & Massage toe deze review op hun website te publiceren.",
+        consentError: "U moet toestemming geven voor publicatie",
+        submit: "Review versturen",
+        privacy: "We gebruiken alleen de informatie die nodig is om uw review te verwerken.",
+        success: {
+          title: "Bedankt voor uw feedback.",
+          message: "Uw review is ontvangen en wordt gecontroleerd voordat deze wordt gepubliceerd.",
+        },
+      },
+      approvedReviews: {
+        title: "Reviews gedeeld met Basalte",
+        empty: "Nog geen goedgekeurde reviews.",
+      },
+      finalCta: {
+        title: "Wilt u Basalte ontdekken?",
+        description: "Neem direct contact met ons op voor onze diensten en beschikbaarheid.",
+        button: "Contact via WhatsApp",
+      },
+    },
+    hero: {
+      eyebrow: "BASALTE SPA & MASSAGE · TANGER",
+      headline: "Een moment van welzijn, voor u ontworpen.",
+      subtext: "Ontdek een ontspanningservaring in een elegante en rustgevende setting in Tanger.",
+      cta: "Reserveer via WhatsApp",
+      ctaSecondary: "Ontdek de spa",
+      socialProof: "★ 4.8 / 5 · 283 Google reviews",
+    },
+    intro: {
+      headline: "Neem de tijd om uzelf te hervinden.",
+      text: "Basalte Spa & Massage is een plek gewijd aan ontspanning, welzijn en zelfzorg. In een verfijnde en warme setting nodigen we u uit om te vertragen, adem te halen, en uzelf een moment te gunnen dat volledig van u is.",
+    },
+    experience: {
+      headline: "Een complete zintuiglijke ervaring",
+      text: "Elk detail is ontworpen om uw zintuigen te wekken: de zachtheid van het licht, de warmte van de steen, de rustgevende stilte van de ruimtes. Een plek waar de tijd stilstaat.",
+      sub1title: "Rust & Privacy",
+      sub1text: "Ruimtes ontworpen voor uw absolute rust.",
+      sub2title: "Traditie & Moderniteit",
+      sub2text: "De traditionele hammam in een eigentijdse, verfijnde setting.",
+      sub3title: "Zorg & Aandacht",
+      sub3text: "Een team dat aandacht heeft voor uw comfort en welzijn.",
+    },
+    services: {
+      headline: "Onze Ervaringen",
+      subtext: "Momenten van ontspanning en verzorging, afgestemd op uw wensen.",
+      hammam: {
+        title: "Hammam",
+        description: "Een traditionele ervaring van ontspanning en zuivering in een authentieke setting.",
+      },
+      massage: {
+        title: "Massage",
+        description: "Een ontspannende massage in een kalme en rustgevende omgeving.",
+      },
+      wellness: {
+        title: "Welzijn",
+        description: "Holistische welzijnservaringen voor lichaam en geest.",
+      },
+      contactForInfo: "Neem contact met ons op via WhatsApp voor beschikbare diensten en prijzen.",
+      cta: "Beschikbaarheid navragen",
+    },
+    gallery: {
+      headline: "Galerij",
+      subtext: "Ontdek de Basalte wereld.",
+      categories: {
+        spa: "De Spa",
+        hammam: "Hammam",
+        ambiance: "Sfeer",
+        details: "Details",
+      },
+    },
+    reviews: {
+      headline: "Wat onze klanten zeggen",
+      subtext: "4.8 / 5 · 283 Google reviews",
+      review1: "So happy to have finally found a hammam I love in Tanger! Clean, modern, comfortable, all the staff was very friendly, precise and accommodating - and not pushy.",
+      review2: "The standard was incredible! Beautiful rooms & such high quality of services...",
+      review3: "A place I return to every time I travel to Tangier from Spain. Consistently excellent.",
+      viewAll: "Bekijk alle Google reviews",
+      source: "Google reviews",
+    },
+    trust: {
+      items: [
+        "4.8 / 5 · 283 Google reviews",
+        "Tanger, Marokko",
+        "Direct boeken",
+        "WhatsApp contact",
+      ],
+    },
+    location: {
+      headline: "Vind ons in Tanger",
+      name: "Basalte Spa & Massage",
+      address: "P5X3+7G, Tanger, Marokko",
+      phone: "06 06 16 01 65",
+      directions: "Routebeschrijving",
+      call: "Bellen",
+    },
+    faq: {
+      headline: "Veelgestelde vragen",
+      items: [
+        {
+          q: "Hoe kan ik reserveren?",
+          a: "Neem direct contact op met Basalte via WhatsApp of telefoon.",
+        },
+        {
+          q: "Waar is Basalte Spa & Massage gevestigd?",
+          a: "Basalte Spa & Massage is gevestigd in Tanger, Marokko.",
+        },
+        {
+          q: "Hoe kan ik de beschikbare diensten ontdekken?",
+          a: "Neem direct contact op met de spa voor actuele diensten, beschikbaarheid en prijzen.",
+        },
+        {
+          q: "Hoe kom ik bij de spa?",
+          a: "Gebruik Google Maps voor routebeschrijving.",
+        },
+      ],
+    },
+    finalCta: {
+      headline: "Uw moment van ontspanning begint hier.",
+      text: "Een vraag, beschikbaarheid of reservering? Neem direct contact op met Basalte Spa & Massage.",
+      whatsapp: "WhatsApp",
+      call: "Bellen",
+    },
+    footer: {
+      tagline: "Spa · Hammam · Massage · Welzijn",
+      copyright: "© Basalte Spa & Massage.",
+    },
+    mobileBar: {
+      whatsapp: "WhatsApp",
+      call: "Bellen",
+      directions: "Route",
+    },
+    floating: {
+      label: "Contact via WhatsApp",
+    },
+  },
+  es: {
+    nav: {
+      home: "Inicio",
+      spa: "El Spa",
+      experiences: "Experiencias",
+      gallery: "Galería",
+      reviews: "Opiniones",
+      contact: "Contacto",
+      book: "Reservar",
+    },
+    bookingPage: {
+      hero: {
+        eyebrow: "RESERVA",
+        title: "Solicitud de reserva",
+        description: "Complete el formulario a continuación. Su solicitud se enviará por WhatsApp para que Basalte confirme la disponibilidad.",
+      },
+      form: {
+        title: "Solicitud de reserva",
+        firstNameLabel: "Nombre",
+        firstNamePlaceholder: "Su nombre",
+        partySizeLabel: "Número de personas",
+        partySizePlaceholder: "Seleccione",
+        dateLabel: "Fecha preferida",
+        timeLabel: "Hora preferida",
+        serviceLabel: "Servicio",
+        servicePlaceholder: "Seleccione",
+        serviceUnsure: "Me gustaría conocer los servicios disponibles",
+        messageLabel: "Mensaje (opcional)",
+        messagePlaceholder: "Información adicional...",
+        submit: "Solicitar reserva por WhatsApp",
+        privacy: "Solo utilizamos la información necesaria para procesar su solicitud.",
+        success: {
+          title: "Su solicitud ha sido preparada.",
+          message: "Envíela por WhatsApp para que Basalte confirme la disponibilidad.",
+        },
+      },
+      crossLink: {
+        text: "¿Ya ha visitado Basalte?",
+        reviews: "Comparta su experiencia",
+      },
+    },
+    reviewsPage: {
+      hero: {
+        eyebrow: "SU EXPERIENCIA CUENTA",
+        title: "Comparta su experiencia en Basalte",
+        description: "Sus comentarios nos ayudan a mejorar continuamente su experiencia y permiten a futuros visitantes descubrir mejor Basalte Spa & Massage.",
+        cta: "Dejar una opinión",
+      },
+      googleReviews: {
+        title: "Opiniones de Google",
+        rating: "4.8 / 5",
+        count: "283 opiniones de Google",
+        button: "Ver opiniones de Google",
+      },
+      form: {
+        title: "¿Cómo fue su visita?",
+        ratingLabel: "Su calificación",
+        ratingError: "Seleccione una calificación",
+        nameLabel: "Su nombre",
+        namePlaceholder: "Su nombre",
+        commentLabel: "Su experiencia",
+        commentPlaceholder: "Cuéntenos algo sobre su experiencia en Basalte...",
+        commentError: "Describa su experiencia (mínimo 10 caracteres)",
+        commentMaxLength: "Máximo 500 caracteres",
+        consentLabel: "Autorizo a Basalte Spa & Massage a publicar esta opinión en su sitio web.",
+        consentError: "Debe autorizar la publicación de su opinión",
+        submit: "Enviar mi opinión",
+        privacy: "Solo utilizamos la información necesaria para procesar su opinión.",
+        success: {
+          title: "Gracias por sus comentarios.",
+          message: "Hemos recibido su reseña y la revisaremos antes de publicarla.",
+        },
+      },
+      approvedReviews: {
+        title: "Opiniones compartidas con Basalte",
+        empty: "Aún no hay opiniones aprobadas.",
+      },
+      finalCta: {
+        title: "¿Desea descubrir Basalte?",
+        description: "Contáctenos directamente para conocer nuestros servicios y disponibilidad.",
+        button: "Contactar por WhatsApp",
+      },
+    },
+    hero: {
+      eyebrow: "BASALTE SPA & MASSAGE · TÁNGER",
+      headline: "Un momento de bienestar, pensado para usted.",
+      subtext: "Descubra una experiencia de relajación en un entorno elegante y relajante en Tánger.",
+      cta: "Reservar por WhatsApp",
+      ctaSecondary: "Descubrir el spa",
+      socialProof: "★ 4.8 / 5 · 283 opiniones de Google",
+    },
+    intro: {
+      headline: "Tómese el tiempo para reencontrarse.",
+      text: "Basalte Spa & Massage es un lugar dedicado a la relajación, el bienestar y el cuidado personal. En un entorno refinado y cálido, le invitamos a desacelerar, respirar y regalarse un momento completamente suyo.",
+    },
+    experience: {
+      headline: "Una experiencia sensorial completa",
+      text: "Cada detalle ha sido pensado para despertar sus sentidos: la suavidad de la luz, el calor de la piedra, el silencio relajante de los espacios. Un lugar donde el tiempo se detiene.",
+      sub1title: "Calma & Privacidad",
+      sub1text: "Espacios diseñados para su tranquilidad absoluta.",
+      sub2title: "Tradición & Modernidad",
+      sub2text: "El hammam tradicional en un entorno contemporáneo y refinado.",
+      sub3title: "Cuidado & Atención",
+      sub3text: "Un equipo atento a su comodidad y bienestar.",
+    },
+    services: {
+      headline: "Nuestras Experiencias",
+      subtext: "Momentos de relajación y cuidado, adaptados a sus deseos.",
+      hammam: {
+        title: "Hammam",
+        description: "Una experiencia tradicional de relajación y purificación en un entorno auténtico.",
+      },
+      massage: {
+        title: "Masaje",
+        description: "Un masaje relajante en un ambiente calmado y relajante.",
+      },
+      wellness: {
+        title: "Bienestar",
+        description: "Experiencias de bienestar holístico para cuerpo y mente.",
+      },
+      contactForInfo: "Contáctenos por WhatsApp para conocer los servicios disponibles y precios.",
+      cta: "Consultar disponibilidad",
+    },
+    gallery: {
+      headline: "Galería",
+      subtext: "Descubra el universo Basalte.",
+      categories: {
+        spa: "El Spa",
+        hammam: "Hammam",
+        ambiance: "Ambiente",
+        details: "Detalles",
+      },
+    },
+    reviews: {
+      headline: "Lo que dicen nuestros clientes",
+      subtext: "4.8 / 5 · 283 opiniones de Google",
+      review1: "So happy to have finally found a hammam I love in Tanger! Clean, modern, comfortable, all the staff was very friendly, precise and accommodating - and not pushy.",
+      review2: "The standard was incredible! Beautiful rooms & such high quality of services...",
+      review3: "A place I return to every time I travel to Tangier from Spain. Consistently excellent.",
+      viewAll: "Ver todas las opiniones de Google",
+      source: "Opiniones de Google",
+    },
+    trust: {
+      items: [
+        "4.8 / 5 · 283 opiniones de Google",
+        "Tánger, Marruecos",
+        "Reserva directa",
+        "Contacto WhatsApp",
+      ],
+    },
+    location: {
+      headline: "Encuéntrenos en Tánger",
+      name: "Basalte Spa & Massage",
+      address: "P5X3+7G, Tánger, Marruecos",
+      phone: "06 06 16 01 65",
+      directions: "Cómo llegar",
+      call: "Llamar",
+    },
+    faq: {
+      headline: "Preguntas frecuentes",
+      items: [
+        {
+          q: "¿Cómo puedo reservar?",
+          a: "Contacte directamente con Basalte por WhatsApp o teléfono.",
+        },
+        {
+          q: "¿Dónde se encuentra Basalte Spa & Massage?",
+          a: "Basalte Spa & Massage se encuentra en Tánger, Marruecos.",
+        },
+        {
+          q: "¿Cómo puedo conocer los servicios disponibles?",
+          a: "Contacte directamente con el spa para conocer los servicios, disponibilidad y precios actuales.",
+        },
+        {
+          q: "¿Cómo llegar al spa?",
+          a: "Use Google Maps para obtener indicaciones.",
+        },
+      ],
+    },
+    finalCta: {
+      headline: "Su momento de relajación comienza aquí.",
+      text: "¿Una pregunta, disponibilidad o reserva? Contacte directamente con Basalte Spa & Massage.",
+      whatsapp: "WhatsApp",
+      call: "Llamar",
+    },
+    footer: {
+      tagline: "Spa · Hammam · Masaje · Bienestar",
+      copyright: "© Basalte Spa & Massage.",
+    },
+    mobileBar: {
+      whatsapp: "WhatsApp",
+      call: "Llamar",
+      directions: "Ruta",
+    },
+    floating: {
+      label: "Contactar por WhatsApp",
     },
   },
 } as const;
