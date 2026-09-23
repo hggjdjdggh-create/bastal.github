@@ -1,97 +1,103 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>coder-app-name</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <style>
-      /* 内联样式确保主题色立即生效，避免闪烁 */
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-      }
-      html.light,
-      html.light body {
-        background-color: #ffffff !important;
-        color: #000000;
-      }
-      html.dark,
-      html.dark body {
-        background-color: #1a1a1a !important;
-        color: #ffffff;
-      }
-    </style>
-    <script>
-      // 在 React 加载前立即设置主题，避免闪烁
-      (function () {
-        const isInIframe = window.self !== window.top;
-
-        function applyThemeToDOM(theme) {
-          document.documentElement.classList.remove("light", "dark");
-          document.documentElement.classList.add(theme);
-          document.documentElement.setAttribute("data-theme", theme);
-        }
-
-        if (isInIframe) {
-          // 监听父窗口主动推送的主题消息
-          window.addEventListener("message", function (event) {
-            if (event.data && typeof event.data.theme === "string") {
-              const theme = event.data.theme;
-              if (theme === "light" || theme === "dark") {
-                applyThemeToDOM(theme);
-              }
-            }
-          });
-        } else {
-          // 非 iframe 环境，使用默认 light 主题
-          applyThemeToDOM("light");
-        }
-      })();
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Basalte Spa & Massage à Tanger — Hammam, massage et bien-être dans un cadre élégant et apaisant. Réservez sur WhatsApp." />
+    <meta name="theme-color" content="#2C2C2C" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Basalte Spa & Massage — Tanger" />
+    <meta property="og:description" content="Découvrez une expérience de détente dans un cadre élégant et apaisant à Tanger." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_MA" />
+    <meta property="og:locale:alternate" content="en_MA" />
+    <meta property="og:locale:alternate" content="ar_MA" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Basalte Spa & Massage — Tanger" />
+    <meta name="twitter:description" content="Découvrez une expérience de détente dans un cadre élégant et apaisant à Tanger." />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <title>Basalte Spa & Massage — Tanger | Hammam, Massage & Bien-être</title>
+    
+    <!-- Structured Data: LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["HealthAndBeautyBusiness", "DaySpa"],
+      "name": "Basalte Spa & Massage",
+      "description": "Spa, hammam et massage à Tanger, Maroc",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tanger",
+        "addressCountry": "MA"
+      },
+      "telephone": "+212606160165",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "283",
+        "bestRating": "5"
+      },
+      "priceRange": "$$"
+    }
     </script>
-      <script>
-      (function () {
-        if (window.self === window.top) return;
-        var reported = {};
-        window.addEventListener("error", function (event) {
-          // 资源加载失败的 error 事件没有 message，此处仅上报 JS 运行时错误
-          if (!event || !event.message) return;
-          var key =
-            event.message + "|" + (event.filename || "") + "|" + (event.lineno || 0);
-          if (reported[key]) return; // 相同错误只上报一次，避免渲染循环刷屏
-          reported[key] = true;
-          try {
-            window.parent.postMessage(
-              {
-                type: "sandbox-runtime-error",
-                payload: {
-                  message: String(event.message).slice(0, 500),
-                  filename: event.filename || "",
-                  lineno: event.lineno || 0,
-                  colno: event.colno || 0,
-                  stack:
-                    event.error && event.error.stack
-                      ? String(event.error.stack).slice(0, 2000)
-                      : ""
-                }
-              },
-              "*"
-            );
-          } catch (e) {
-            /* 上报失败不影响页面运行 */
+    
+    <!-- Structured Data: FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Comment réserver ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Contactez Basalte directement sur WhatsApp ou par téléphone."
           }
-        });
-      })();
+        },
+        {
+          "@type": "Question",
+          "name": "Où se trouve Basalte Spa & Massage ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Basalte Spa & Massage se trouve à Tanger, Maroc."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment connaître les prestations disponibles ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Contactez directement le spa pour connaître les prestations, disponibilités et tarifs actuels."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment venir au spa ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Utilisez Google Maps pour obtenir l'itinéraire."
+          }
+        }
+      ]
+    }
     </script>
+    
+    <style>
+      html, body { margin: 0; padding: 0; width: 100%; min-height: 100%; }
+      body { background-color: #FAF8F5; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
